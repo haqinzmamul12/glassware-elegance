@@ -3,7 +3,7 @@ name: Deploy to Fly.io
 # Trigger this workflow manually or on push, but only run after ci.yml completes
 on:
   workflow_run:
-    workflows: ["ci.yml"]    # Name of your CI workflow file
+    workflows: ["CI - Build & Push to Docker Hub"]
     types:
       - completed
 
