@@ -1,4 +1,4 @@
-name: GlassWare Shop Application 
+name: CI - Build & Push to Docker Hub
 
 on:
     push:
