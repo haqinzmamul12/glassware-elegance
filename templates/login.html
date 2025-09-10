@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Glassware Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <body>
+        <div class="flash-wrapper">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="flash {{ category }}">
+                <span>{{ message }}</span>
+                <div class="progress-bar"></div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Your existing form below -->
+
+
+        <div class="login-container">
+            <div class="login-box">
+                <h2>Login</h2>
+                <form method="POST" action="/login">
+                    <div class="input-group">
+                        <label for="email">Email or Username</label>
+                        <input type="text" id="email" name="email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <div class="forgot-password">
+                            <a href="/forgot-password">Forgot Password?</a>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="login-btn">Login</button>
+                        <a href="/signup" class="signup-link">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            // Auto-remove flash message after 5 seconds
+            setTimeout(() => {
+                const flash = document.querySelector('.flash');
+                if (flash) {
+                    flash.style.opacity = '0';
+                    setTimeout(() => flash.remove(), 500);
+                }
+            }, 5000);
+        </script>
+
+
+    </body>
+
+</html>

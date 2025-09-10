@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glassware Shop</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %} -->
+
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">Glassware Elegance</div>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <!-- <a href="shop">Shop</a> -->
+            <a href="about">About</a>
+            <a href="contact">Contact Us</a>
+            <a href="products">Products</a>
+            <form action="{{ url_for('search') }}" method="GET" style="display: inline-block; margin-left: 20px;">
+                <input type="text" name="q" placeholder="Search products..."
+                    style="padding: 5px; width: 200px; border-radius: 4px; border: 1px solid #ccc;" required>
+                <button type="submit"
+                    style="padding: 5px 10px; background-color: #0077cc; color: white; border: none; border-radius: 4px; cursor: pointer;">Search</button>
+            </form>
+        </nav>
+
+        <div class="nav-right">
+            <a href="/cart" class="cart-link">
+                🛒 Cart ({{ session['cart_count'] if session.get('cart_count') else 0 }})
+            </a>
+
+
+            {% if current_user.is_authenticated %}
+            <!-- Optionally show username -->
+            <span class="welcome-msg">
+                <a href="{{ url_for('account') }}" class="account-link">{{ current_user.username }}!</a>
+            </span>
+
+            <a href="{{ url_for('logout') }}" class="nav-btn">Logout</a>
+
+            {% else %}
+            <a href="{{ url_for('login') }}" class="nav-btn">Login</a>
+            {% endif %}
+
+        </div>
+    </header>
+
+    <!-- Hero Section
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Handcrafted Glassware for Every Home</h1>
+            <a href="#" class="hero-btn">Shop Now</a>
+        </div>
+    </section> -->
+
+    <!-- Hero Slider Section -->
+    <section class="hero-slider">
+        <div class="slider-wrapper">
+            <div class="slide active">
+                <img src="{{ url_for('static', filename='images/base.jpg') }}" alt="Hero Image 1">
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/image19.jpeg') }}" alt="Hero Image 2">
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/image3.jpeg') }}" alt="Hero Image 3">
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/image1.jpeg') }}" alt="Hero Image 4">
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/image8.jpeg') }}" alt="Hero Image 5">
+            </div>
+        </div>
+        <div class="slider-caption">
+            <h1>Handcrafted Glassware for Every Home</h1>
+            <a href="/products" class="hero-btn">Shop Now</a>
+        </div>
+    </section>
+
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+
+            <div class="product-card">
+                <img src=".\static\images\OIP.webp" alt="Glass Vase" />
+                <h3>Glass Vase</h3>
+                <p>$24.99</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='images/base.jpg') }}" alt="Glassware">
+                <h3>Drinking Cup</h3>
+                <p>$12.99</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src=".\static\images\OIP (2).webp" alt="Glass Pot" />
+                <h3>Glass Pot</h3>
+                <p>$18.50</p>
+                <button>Add to Cart</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-grid">
+
+            <div class="category-card">
+                <img src="https://via.placeholder.com/100" alt="Drinkware" />
+                <h3>Drinkware</h3>
+            </div>
+
+            <div class="category-card">
+                <img src="https://via.placeholder.com/100" alt="Kitchen" />
+                <h3>Kitchen</h3>
+            </div>
+
+            <div class="category-card">
+                <img src="https://via.placeholder.com/100" alt="Home Decor" />
+                <h3>Home Decor</h3>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src=".\static\images\OIP (1).webp" alt="Glass Pot" />
+            </div>
+            <div class="about-text">
+                <h2>About Our Craft</h2>
+                <p>
+                    At Glassware Elegance, every piece is made with passion and precision. From drinkware
+                    to home decor, our handcrafted designs bring beauty and elegance into everyday living.
+                </p>
+                <p>
+                    We believe in sustainability, artistry, and timeless design. Our team of artisans
+                    carefully creates each item to ensure it’s unique, durable, and stunning.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-cards">
+
+            <div class="testimonial-card">
+                <p>"Beautiful quality and craftsmanship. I love my glassware!"</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="customer-name">— Anna</div>
+            </div>
+
+            <div class="testimonial-card">
+                <p>"Fast delivery and great customer service. Highly recommend!"</p>
+                <div class="stars">⭐⭐⭐⭐</div>
+                <div class="customer-name">— James</div>
+            </div>
+
+            <div class="testimonial-card">
+                <p>"So elegant and perfect for my home decor. Absolutely stunning."</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="customer-name">— Lee</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Newsletter Signup Section -->
+    <section class="newsletter">
+        <h2>Stay Updated! Subscribe to Our Newsletter</h2>
+        <form class="newsletter-form" action="#" method="post">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+
+
+
+
+
+
+
+    <h1>Welcome to Glassware Elegance</h1>
+    <p>This is the beginning of your online store!</p>
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>Glassware Elegance</h3>
+                <p>© 2025 Glassware Elegance</p>
+            </div>
+            <div class="footer-center">
+                <p>Contact: <a href="mailto:info@glassware.com">info@glassware.com</a></p>
+            </div>
+            <div class="footer-right">
+                <a href="#" aria-label="Facebook" class="social-icon">🔵</a>
+                <a href="#" aria-label="Instagram" class="social-icon">📸</a>
+                <a href="#" aria-label="Twitter" class="social-icon">🐦</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>

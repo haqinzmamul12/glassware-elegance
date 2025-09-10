@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Products - Glassware Store</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+</head>
+
+<body>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div id="flash-container" class="fixed top-4 right-4 space-y-2 z-50">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} shadow-lg p-3 rounded-lg transition-opacity duration-500">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+
+  <nav>
+    <a href="/" {% if active_page=='home' %}class="active" {% endif %}>Home</a> |
+    <a href="/products" {% if active_page=='products' %}class="active" {% endif %}>Products</a> |
+    <a href="/contact" {% if active_page=='contact' %}class="active" {% endif %}>Contact</a> |
+    <a href="/about" {% if active_page=='about' %}class="active" {% endif %}>About</a> |
+    <a href="/cart" class="cart-link">
+      🛒 Cart ({{ session['cart_count'] if session.get('cart_count') else 0 }})
+    </a>
+  </nav>
+
+  <main class="products-container">
+    <h1>
+      {% if query %}
+      Search Results for "{{ query }}"
+      {% else %}
+      Our Handcrafted Glass Products
+      {% endif %}
+    </h1>
+
+    {% if products %}
+    <div class="product-grid">
+      {% for product in products %}
+      <div class="product-card">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+
+        <!-- ✅ Product Description -->
+        <p class="product-description">{{ product.description }}</p>
+
+        <p>${{ "%.2f"|format(product.price) }}</p>
+
+        <form action="{{ url_for('add_to_cart') }}" method="POST">
+          <input type="hidden" name="product_id" value="{{ product.id }}">
+          <input type="hidden" name="product_name" value="{{ product.name }}">
+          <input type="hidden" name="product_price" value="{{ product.price }}">
+          <input type="hidden" name="product_description" value="{{ product.description }}">
+          <input type="hidden" name="product_image_url" value="{{ product.image_url }}">
+          <button type="submit">Add to Cart</button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No products found.</p>
+    {% endif %}
+  </main>
+
+
+  <script>
+    // Wait 2 seconds, then fade out flash messages
+    setTimeout(() => {
+      const flashContainer = document.getElementById('flash-container');
+      if (flashContainer) {
+        flashContainer.style.opacity = '0';
+        flashContainer.style.transition = 'opacity 0.5s ease-out';
+        setTimeout(() => flashContainer.remove(), 500); // remove after fade-out
+      }
+    }, 2000);
+  </script>
+
+
+</body>
+
+</html>

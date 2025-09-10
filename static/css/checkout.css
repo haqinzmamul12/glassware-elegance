@@ -1,0 +1,75 @@
+.checkout-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.saved-address {
+  background: #f3f3f3;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.change-link {
+  font-size: 14px;
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+.address-form input,
+.address-form textarea {
+  width: 100%;
+  margin: 5px 0 15px;
+  padding: 10px;
+}
+
+.payment-methods label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.place-order-btn {
+  background: #ff9900;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-name {
+  font-size: 1.2rem;
+}
+
+.change-link {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #0077cc;
+}
+
+.change-link:hover {
+  text-decoration: underline;
+}
+
+
+
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Account</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}">
+</head>
+<body>
+  <div class="account-container">
+    <h1>Your Account</h1>
+    <div class="account-grid">
+
+      <!-- Your Orders -->
+      <a href="/orders" class="account-card">
+        <div class="icon">📦</div>
+        <div class="info">
+          <h3>Your Orders</h3>
+          <p>Track, return, or buy things again</p>
+        </div>
+      </a>
+
+      <!-- Your Address -->
+      <a href="/address" class="account-card">
+        <div class="icon">📍</div>
+        <div class="info">
+          <h3>Your Address</h3>
+          <p>Edit addresses for orders and gifts</p>
+        </div>
+      </a>
+
+      <!-- Contact Us -->
+      <a href="/contact" class="account-card">
+        <div class="icon">📞</div>
+        <div class="info">
+          <h3>Contact Us</h3>
+          <p>Get help via phone or chat</p>
+        </div>
+      </a>
+
+      <!-- Track Your Order -->
+      <a href="/track-order" class="account-card">
+        <div class="icon">🔍</div>
+        <div class="info">
+          <h3>Track Your Order</h3>
+          <p>Check the status of your delivery</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>

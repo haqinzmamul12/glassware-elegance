@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - Glassware Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <body>
+        <div class="flash-wrapper">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="flash {{ category }}">
+                <span>{{ message }}</span>
+                <div class="progress-bar"></div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Your existing form below -->
+
+
+        <div class="signup-container">
+            <div class="signup-box">
+                <h2>Create Account</h2>
+                <form method="POST" action="/signup">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="signup-btn">Sign Up</button>
+                        <a href="/login" class="login-link">Already have an account?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            // Auto-remove flash message after 5 seconds
+            setTimeout(() => {
+                const flash = document.querySelector('.flash');
+                if (flash) {
+                    flash.style.opacity = '0';
+                    setTimeout(() => flash.remove(), 500);
+                }
+            }, 5000);
+        </script>
+
+
+    </body>
+
+</html>

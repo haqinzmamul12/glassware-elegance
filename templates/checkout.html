@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout - Glassware Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div id="flash-container" class="fixed top-4 right-4 space-y-2 z-50">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} shadow-lg p-3 rounded-lg transition-opacity duration-500">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="checkout-container">
+
+        <h1>Checkout</h1>
+
+        <!-- DELIVERY ADDRESS -->
+        <div class="section address-section">
+            <h2>1. Delivering to:</h2>
+
+            {% if user.address %}
+            <div class="saved-address">
+                <div class="address-header">
+                    <p class="user-name"><strong>{{ user.username }}</strong></p>
+                    <a href="{{ url_for('change_address') }}" class="change-link">Change</a>
+                </div>
+                <p>{{ user.address }}</p>
+            </div>
+
+            {% else %}
+            <form action="{{ url_for('add_address') }}" method="POST" class="address-form">
+                <label>Full Name:</label>
+                <input type="text" name="full_name" required>
+
+                <label>Address:</label>
+                <textarea name="address" rows="4" required></textarea>
+
+                <label>City:</label>
+                <input type="text" name="city" required>
+
+                <label>PIN Code:</label>
+                <input type="text" name="pincode" required>
+
+                <label>Phone:</label>
+                <input type="text" name="phone" required>
+
+                <button type="submit">Save Address</button>
+            </form>
+            {% endif %}
+        </div>
+
+        <!-- PAYMENT OPTIONS -->
+        <div class="section payment-section">
+            <h2>2. Select Payment Method:</h2>
+            <form action="{{ url_for('confirm_payment') }}" method="POST" class="payment-methods">
+                <label><input type="radio" name="payment_method" value="credit_card" required> Credit Card</label>
+                <label><input type="radio" name="payment_method" value="debit_card"> Debit Card</label>
+                <label><input type="radio" name="payment_method" value="upi"> UPI</label>
+                <label><input type="radio" name="payment_method" value="paytm"> Paytm</label>
+                <label><input type="radio" name="payment_method" value="phonepe"> PhonePe</label>
+                <label><input type="radio" name="payment_method" value="cod"> Cash on Delivery</label>
+
+                <button type="submit" class="place-order-btn">Place Order</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart - Glassware Store</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+</head>
+
+<body>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div id="flash-container" class="fixed top-4 right-4 space-y-2 z-50">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} shadow-lg p-3 rounded-lg transition-opacity duration-500">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+
+
+  <nav>
+    <a href="/">Home</a> |
+    <a href="/about">About</a>
+    <a href="/contact" class="active">Contact Us</a> |
+    <a href="/products">Products</a> |
+    
+  </nav>
+
+  <div class="cart-page-container">
+    <h1>Your Cart</h1>
+
+    {% if cart %}
+    <div class="cart-container">
+      <!-- LEFT SIDE -->
+      <div class="cart-left">
+        {% for name, item in cart.items() %}
+        <div class="cart-item">
+          <div class="item-image">
+            <img src="{{ item.image_url }}" alt="{{ name }}">
+          </div>
+
+          <div class="item-details">
+            <h2>{{ name }}</h2>
+            <p>{{ item.description }}</p>
+            <p class="price">₹{{ "%.2f"|format(item.price) }}</p>
+
+            <div class="item-actions">
+              <form action="/update_cart" method="POST">
+                <input type="hidden" name="product_name" value="{{ name }}">
+                <button type="submit" name="action" value="remove" class="link-btn">Remove</button>
+              </form>
+              <form action="/cart_action" method="POST">
+                <input type="hidden" name="product_name" value="{{ name }}">
+                <button type="submit" name="action" value="save" class="link-btn">Save for later</button>
+              </form>
+              <form action="/cart_action" method="POST">
+                <input type="hidden" name="product_name" value="{{ name }}">
+                <button type="submit" name="action" value="share" class="link-btn">Share</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="quantity-box">
+            <form action="/update_cart" method="POST">
+              <input type="hidden" name="product_name" value="{{ name }}">
+
+              <div class="quantity-control">
+                {% if item.quantity > 1 %}
+                <button type="submit" name="action" value="decrease">−</button>
+                {% else %}
+                <button type="submit" name="action" value="remove">🗑️</button>
+                {% endif %}
+                <input type="text" name="quantity" value="{{ item.quantity }}" readonly>
+                <button type="submit" name="action" value="increase">+</button>
+              </div>
+            </form>
+            <p class="subtotal">Subtotal: ₹{{ "%.2f"|format(item.price * item.quantity) }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="cart-right">
+        <div class="summary">
+          <h2>Subtotal ({{ cart | length }} items):</h2>
+          <p class="total">₹{{ "%.2f"|format(total) }}</p>
+          <a href="{{ url_for('checkout') }}" class="checkout-btn">Proceed to Buy</a>
+        </div>
+      </div>
+    </div> <!-- end of cart-container -->
+
+    <!-- ✅ SAVED FOR LATER SECTION (outside cart-container, always below) -->
+    {% if saved %}
+    <div class="saved-section">
+      <h2>Saved for Later ({{ saved | length }})</h2>
+      {% for name, item in saved.items() %}
+      <div class="saved-item">
+        <div class="saved-info">
+          <img src="{{ item.image_url }}" alt="{{ name }}" class="saved-img">
+          <div>
+            <p><strong>{{ name }}</strong></p>
+            <p>₹{{ "%.2f"|format(item.price) }}</p>
+          </div>
+        </div>
+        <div class="saved-actions">
+          <form action="/move_to_cart" method="POST">
+            <input type="hidden" name="product_name" value="{{ name }}">
+            <button type="submit" name="action" value="moveback" class="link-btn">Move to Cart</button>
+          </form>
+
+          <form action="/move_to_cart" method="POST">
+            <input type="hidden" name="product_name" value="{{ name }}">
+            <button type="submit" name="action" value="remove" class="link-btn">Remove</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+
+    {% else %}
+    <p>Your cart is empty. <a href="{{ url_for('home') }}">Start shopping</a>.</p>
+    {% endif %}
+  </div>
+</body>
+
+</html>

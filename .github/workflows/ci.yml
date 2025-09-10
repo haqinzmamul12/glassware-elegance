@@ -1,0 +1,44 @@
+name: GlassWare Shop Application 
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+
+
+jobs:
+    build-and-test:
+        name: Checkout & Set Up Environment 
+        runs-on: ubuntu-latest 
+    
+        steps:
+            - name: Checkout Application Source 
+              uses: actions/checkout@v3 
+
+            - name: Set Up Python Environment 
+              uses: actions/setup-python@v4 
+              with:
+                python-version: "3.13.2"
+
+    build-docker-image:
+        name: Build Image & Push 
+        runs-on: ubuntu-latest 
+        needs: build-and-test
+
+        steps:
+            - name: Login to Dockerhub 
+              uses: docker/login-action@v2 
+              with:
+                username: ${{ secrets.DOCKERHUB_USERNAME }}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: Build & Push
+              uses: docker/build-push-action@v2
+              with:
+                context: .
+                push: true
+                tags: ${{ secrets.DOCKERHUB_USERNAME }}/glassware-app:latest 
+
+
+    

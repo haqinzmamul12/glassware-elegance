@@ -1,0 +1,124 @@
+[
+  {
+    "id": 1,
+    "name": "Classic Glass Mug",
+    "description": "Durable and clear glass mug ideal for hot beverages like coffee or tea.",
+    "category": "Drinkware",
+    "price": 12.99,
+    "image_url": "/static/images/image1.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Elegant Wine Glass Set",
+    "description": "Set of 4 crystal-clear stemmed wine glasses. Perfect for red or white wine.",
+    "category": "Drinkware",
+    "price": 35.00,
+    "image_url": "/static/images/image2.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "Colorful Glass Tumblers",
+    "description": "Set of 6 multi-colored drinking glasses. Adds a pop of color to any table.",
+    "category": "Drinkware",
+    "price": 30.00,
+    "image_url": "/static/images/image3.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "Glass Juice Cups",
+    "description": "Compact juice glasses for breakfast or brunch. Comes in a set of 4.",
+    "category": "Drinkware",
+    "price": 18.50,
+    "image_url": "/static/images/image4.jpeg"
+  },
+  {
+    "id": 5,
+    "name": "Modern Glass Pitcher",
+    "description": "Sleek borosilicate glass pitcher with handle. Ideal for serving water, iced tea, or lemonade.",
+    "category": "Drinkware",
+    "price": 22.50,
+    "image_url": "/static/images/image5.jpeg"
+  },
+
+  {
+    "id": 6,
+    "name": "Glass Tea Pot with Infuser",
+    "description": "Heat-resistant teapot with removable stainless steel infuser. Ideal for loose-leaf tea.",
+    "category": "Kitchenware",
+    "price": 28.75,
+    "image_url": "/static/images/image6.jpeg"
+  },
+  {
+    "id": 7,
+    "name": "Textured Glass Storage Jars",
+    "description": "3-piece set with airtight lids. Great for pantry storage or countertop display.",
+    "category": "Kitchenware",
+    "price": 24.90,
+    "image_url": "/static/images/image7.jpeg"
+  },
+  {
+    "id": 8,
+    "name": "Glass Oil & Vinegar Dispenser",
+    "description": "Stylish set with pour spouts. Adds elegance to any kitchen or dining table.",
+    "category": "Kitchenware",
+    "price": 16.80,
+    "image_url": "/static/images/image8.jpeg"
+  },
+  {
+    "id": 9,
+    "name": "Microwave-Safe Glass Bowls",
+    "description": "Set of 5 stackable glass bowls. Great for mixing, storing or reheating.",
+    "category": "Kitchenware",
+    "price": 29.99,
+    "image_url": "/static/images/image9.jpeg"
+  },
+  {
+    "id": 10,
+    "name": "Glass Butter Dish with Lid",
+    "description": "Clear glass butter keeper with classic design. Dishwasher safe.",
+    "category": "Kitchenware",
+    "price": 11.99,
+    "image_url": "/static/images/image10.jpeg"
+  },
+
+  {
+    "id": 11,
+    "name": "Handcrafted Glass Vase",
+    "description": "Tall, artistic vase made with hand-blown glass. Great for fresh or dried flowers.",
+    "category": "Home Decor",
+    "price": 42.99,
+    "image_url": "/static/images/image11.jpeg"
+  },
+  {
+    "id": 12,
+    "name": "Blown Glass Paperweight",
+    "description": "Unique hand-blown design with swirls of color. Perfect for desk or shelf display.",
+    "category": "Home Decor",
+    "price": 19.95,
+    "image_url": "/static/images/image12.jpeg"
+  },
+  {
+    "id": 13,
+    "name": "Glass Terrarium Globe",
+    "description": "Hanging glass orb for succulents or candles. Adds a modern touch to any room.",
+    "category": "Home Decor",
+    "price": 25.50,
+    "image_url": "/static/images/image13.jpeg"
+  },
+  {
+    "id": 14,
+    "name": "Frosted Glass Candle Holders",
+    "description": "Set of 3 frosted holders to add soft ambiance to your space.",
+    "category": "Home Decor",
+    "price": 17.75,
+    "image_url": "/static/images/image14.jpeg"
+  },
+  {
+    "id": 15,
+    "name": "Glass Pendant Light Shade",
+    "description": "Handmade glass shade for hanging pendant lights. Suitable for modern interiors.",
+    "category": "Home Decor",
+    "price": 39.99,
+    "image_url": "/static/images/image15.jpeg"
+  }
+]

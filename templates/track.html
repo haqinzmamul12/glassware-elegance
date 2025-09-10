@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/track.css') }}">
+</head>
+<body>
+    <div class="track-container">
+        <h1>Track Your Orders</h1>
+        <p>See the status of your orders below.</p>
+
+        {% for order in orders %}
+        <div class="order-card">
+            <div class="order-header">
+                <img src="{{ order.item_img }}" alt="{{ order.item_name }}">
+                <div>
+                    <h2>{{ order.item_name }}</h2>
+                    <p>Order ID: {{ order.id }}</p>
+                    <p>Placed on: {{ order.date }}</p>
+                    <p>Total: {{ order.total }}</p>
+                    <p>Ship to: {{ order.ship_to }}</p>
+                </div>
+            </div>
+
+            <div class="workflow">
+                {% set steps = ['Order Placed', 'Processing', 'Shipped', 'Out for Delivery', 'Delivered'] %}
+                {% for step in steps %}
+                <div class="step {% if step|lower == order.status|lower %}active{% elif steps.index(step) < steps.index(order.status) %}completed{% endif %}">
+                    <span class="circle"></span>
+                    <span class="label">{{ step }}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <p class="status-msg">Status Message: {{ order.status_msg }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

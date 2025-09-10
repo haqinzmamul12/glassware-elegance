@@ -1,0 +1,122 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.track-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.order-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.order-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.order-header img {
+    width: 170px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.order-header h2 {
+    margin: 0;
+    color: #007bff;
+}
+
+.workflow {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 20px;
+    margin: 40px 0 20px; 
+}
+
+.step {
+    text-align: center;
+    width: 20%;
+    position: relative;
+}
+
+.step .circle {
+    width: 20px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.step.completed .circle,
+.step.active .circle {
+    background: #fff;
+    border: 4px solid #007bff;
+}
+
+.step .label {
+    font-size: 13px;
+    color: #666;
+    display: block;
+    margin-top: 13px; 
+}
+
+
+/* Completed labels = blue */
+.step.completed .label {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* Active label = dark + bold */
+.step.active .label {
+    color: #000;
+    font-weight: 700;
+}
+
+.workflow::before {
+    content: '';
+    position: absolute;
+    top: 10px;              /* aligns line with center of circles */
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: #ccc;
+    z-index: 0;
+}
+
+.step.completed::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 100%;
+    height: 4px;
+    background: #007bff;
+    z-index: 0;
+}
+
+.status-msg {
+    font-style: italic;
+    color: #555;
+}

@@ -1,0 +1,164 @@
+/* static/css/login.css */
+
+body {
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+.login-box {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-box h2 {
+  margin-bottom: 25px;
+  text-align: center;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-top: 5px;
+}
+
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.login-btn:hover {
+  background-color: #218838;
+}
+
+.signup-link {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+/* Flash message styles */
+.flash-wrapper {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+.flash {
+  position: relative;
+  width: 320px;
+  margin: auto;
+  padding: 15px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  color: #fff;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideFadeIn 0.3s ease-out;
+}
+
+.flash.success {
+  background-color: #28a745;
+}
+
+.flash.error {
+  background-color: #dc3545;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress bar animation */
+.flash .progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.7);
+  animation: shrink 5s linear forwards;
+  width: 100%;
+  border-radius: 0 0 4px 4px;
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+

@@ -1,0 +1,10 @@
+flask
+langchain 
+langchain-community 
+faiss-cpu
+sentence-transformers
+rank_bm25
+sendgrid
+flask_sqlalchemy
+flask_login
+werkzeug

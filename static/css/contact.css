@@ -1,0 +1,105 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f9fc;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: #ffffff;
+  padding: 15px;
+  border-bottom: 1px solid #e1e1e1;
+  text-align: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #0077cc;
+  margin: 0 12px;
+  font-weight: bold;
+}
+
+nav a.active {
+  color: #ffffff;
+  background-color: #0077cc;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.contact-container h1 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.contact-container p {
+  margin-bottom: 25px;
+  font-size: 16px;
+  color: #555;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: #0077cc;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #005fa3;
+}
+
+
+
+/* Flash message styling */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Success (green background) */
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Danger / Error (red background) */
+.alert.danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+

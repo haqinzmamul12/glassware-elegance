@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Orders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/orders.css') }}">
+</head>
+<body>
+  <div class="orders-container">
+    <h1>Your Orders</h1>
+
+    {% for order in orders %}
+    <div class="order-card">
+      <div class="order-header">
+        <div><strong>ORDER PLACED</strong><br>{{ order.date }}</div>
+        <div><strong>TOTAL</strong><br>{{ order.total }}</div>
+        <div><strong>SHIP TO</strong><br>{{ order.ship_to }}</div>
+        <div><strong>ORDER # {{ order.id }}</strong></div>
+      </div>
+
+      <div class="order-body">
+        <div class="order-img">
+          <img src="{{ order.item_img }}" alt="Product">
+        </div>
+        <div class="order-info">
+          <h3> {{ order.status }}</h3>
+          <p> {{ order.status_msg }}</p>
+          <a href="#" class="item-link">{{ order.item_name }}</a>
+          <br>
+          <button class="btn">View your item</button>
+        </div>
+        <div class="order-actions">
+          <button class="btn yellow">View return label and instructions</button>
+          <button class="btn">View Return/Refund Status</button>
+          <button class="btn">Leave seller feedback</button>
+          <button class="btn">Leave delivery feedback</button>
+          <button class="btn">Write a product review</button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
