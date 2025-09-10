@@ -14,7 +14,10 @@ jobs:
 
     steps:
       - name: Install Flyctl
-        run: curl -L https://fly.io/install.sh | sh
+        run: |
+          curl -L https://fly.io/install.sh | sh
+          echo "$HOME/.fly/bin" >> $GITHUB_PATH  # Add flyctl to PATH
+
 
       - name: Authenticate Flyctl
         env:
