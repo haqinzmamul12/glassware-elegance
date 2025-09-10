@@ -1,12 +1,19 @@
 import os 
 import json 
 from langchain.vectorstores import FAISS 
-from langchain.embeddings import HuggingFaceEmbeddings
+#from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_cohere import CohereEmbeddings
+
+from dotenv import load_dotenv 
+load_dotenv()
+COHERE_API_KEY =os.getenv("COHERE_API_KEY")
 
 
-embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+# embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+# embedding = HuggingFaceEmbeddings(model_name ="intfloat/e5-small-v2")
+embedding =CohereEmbeddings(model ="embed-english-light-v3.0")
 
 def load_product_documents(prod_paths ="products.json"):
     with open(prod_paths, 'r') as f:

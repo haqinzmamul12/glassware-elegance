@@ -1,6 +1,5 @@
-name: Deploy to Fly.io
+name: CD - Deploy to Render
 
-# Trigger this workflow manually or on push, but only run after ci.yml completes
 on:
   workflow_run:
     workflows: ["CI - Build & Push to Docker Hub"]
@@ -8,18 +7,11 @@ on:
       - completed
 
 jobs:
-  deploy:
+  deploy-on-render:
+    name: Deploy on Render
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - name: Install Flyctl
-        run: |
-          curl -L https://fly.io/install.sh | sh
-          echo "$HOME/.fly/bin" >> $GITHUB_PATH  # Add flyctl to PATH
-
-      - name: Deploy to Fly.io using Docker Hub image
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-        run: |
-          flyctl deploy --image ${{ secrets.DOCKERHUB_USERNAME }}/glassware-app:latest --remote-only
+      - name: Deploy on Render
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}

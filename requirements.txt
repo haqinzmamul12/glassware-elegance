@@ -8,3 +8,5 @@ sendgrid
 flask_sqlalchemy
 flask_login
 werkzeug
+python-dotenv 
+langchain_cohere 
