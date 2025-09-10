@@ -18,6 +18,13 @@ app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
 
+@app.before_first_request
+def setup_database():
+    from create_db import reset_database
+    reset_database()
+
+
+
 
 # db.init_app(app)
 

@@ -15,6 +15,6 @@ jobs:
     steps:
       - name: Deploy on Render
         run: | 
-          curl -X POST https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }} \
+          curl -X POST https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
           -H 'Authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
           -H 'Content-Type: application/json'
