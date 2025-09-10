@@ -8,3 +8,4 @@ sendgrid
 flask_sqlalchemy
 flask_login
 werkzeug
+flyctl
