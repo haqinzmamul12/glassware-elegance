@@ -13,7 +13,7 @@ COHERE_API_KEY =os.getenv("COHERE_API_KEY")
 
 # embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 # embedding = HuggingFaceEmbeddings(model_name ="intfloat/e5-small-v2")
-embedding =CohereEmbeddings(model ="embed-english-light-v3.0")
+embedding =CohereEmbeddings(model ="embed-english-light-v3.0", cohere_api_key=COHERE_API_KEY)
 
 def load_product_documents(prod_paths ="products.json"):
     with open(prod_paths, 'r') as f:

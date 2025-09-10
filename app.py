@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-import json 
+import json
+import os 
+import uvicorn  
 import time
 import uuid 
 from datetime import datetime
@@ -623,5 +625,7 @@ def track_orders():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))  # Default to 10000
+    uvicorn.run("app:app", host="0.0.0.0", port=port)
 
