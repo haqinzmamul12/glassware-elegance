@@ -10,4 +10,4 @@ flask_login
 werkzeug
 python-dotenv 
 langchain_cohere 
-uvicorn 
+gunicorn 

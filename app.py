@@ -18,11 +18,6 @@ app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
 
-@app.before_first_request
-def setup_database():
-    from create_db import reset_database
-    reset_database()
-
 
 
 
@@ -629,9 +624,4 @@ def track_orders():
     orders = Orders.query.filter_by(user_id=current_user.id).all()
     return render_template('track.html', orders=orders)
 
-
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))  # Render sets the PORT env var
-    app.run(host='0.0.0.0', port=port)
 
