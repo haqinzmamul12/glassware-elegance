@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import json
-import os 
-import uvicorn  
+import os   
 import time
 import uuid 
 from datetime import datetime
@@ -624,4 +623,11 @@ def track_orders():
     orders = Orders.query.filter_by(user_id=current_user.id).all()
     return render_template('track.html', orders=orders)
 
+
+
+# if __name__ == '__main__':
+#     from create_db import reset_database
+#     reset_database()
+#     port = int(os.environ.get("PORT", 10000))  # Render sets the PORT env var
+#     app.run(host='0.0.0.0', port=port)
 
