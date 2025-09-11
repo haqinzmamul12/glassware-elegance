@@ -20,6 +20,18 @@ p {
 
 
 /* Navigation Bar */
+/* .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 15px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+} */
+
+
+
+/* Navigation Bar */
 .navbar {
   display: flex;
   align-items: center;
@@ -27,11 +39,186 @@ p {
   background-color: #ffffff;
   padding: 15px 30px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1000;
 }
+
+/* Logo */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* Nav links for desktop */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Desktop search form */
+.search-form {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.search-form input {
+  padding: 5px;
+  width: 200px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Hide close button by default */
+.close-btn {
+  display: none;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: #333;
+  z-index: 1200;
+}
+
+/* ============ Mobile Styles ============ */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    /* show hamburger */
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    /* hidden off screen */
+    height: 100%;
+    width: 250px;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 60px 20px;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 1050;
+  }
+
+  .nav-links a,
+  .search-form {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+
+
+  @media (min-width: 769px) {
+  .nav-links {
+    margin-left: -30px;   /* adjust value until it looks right */
+  }
+}
+
+
+
+  .nav-links.active {
+    right: 0;
+    /* slide in */
+  }
+
+  /* Show close button ONLY when menu is active */
+  .nav-links.active .close-btn {
+    display: block;
+  }
+
+  /* Mobile search alignment */
+  .search-form {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .search-form input {
+    flex: 1;
+    margin-right: 8px;
+    width: auto;
+  }
+
+  .search-form button {
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Ensure desktop doesn't break */
+@media (min-width: 769px) {
+  .close-btn {
+    display: none !important;
+  }
+}
+
+
+/* By default: hide mobile search, show desktop search */
+.mobile-search {
+  display: none;
+}
+
+.search-form {
+  display: inline-block;
+}
+
+/* On mobile: show mobile search at the top of panel, hide desktop search */
+@media (max-width: 768px) {
+  .mobile-search {
+    display: flex;
+    /* input + button side by side */
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .mobile-search input {
+    flex: 1;
+    margin-right: 8px;
+  }
+
+  .mobile-search button {
+    white-space: nowrap;
+  }
+
+  .search-form {
+    display: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
 
 /* Hero Section */
 
- .hero {
+.hero {
   background-image: url('https://via.placeholder.com/1400x500');
   background-size: cover;
   background-position: center;
@@ -68,16 +255,16 @@ p {
 
 .hero-btn:hover {
   background-color: #ddd;
-} 
+}
 
 
 
 
 /* New Hero */
 .hero-slider {
-    position: relative;
-    height: 500px;
-    overflow: hidden;
+  position: relative;
+  height: 500px;
+  overflow: hidden;
 }
 
 /* .slide {
@@ -92,19 +279,19 @@ p {
 
 
 .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    animation: fadeSlide 25s infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  animation: fadeSlide 25s infinite;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 
@@ -112,27 +299,45 @@ p {
 
 
 .slide:nth-child(1) {
-    animation-delay: 0s;
+  animation-delay: 0s;
 }
+
 .slide:nth-child(2) {
-    animation-delay: 5s;
+  animation-delay: 5s;
 }
+
 .slide:nth-child(3) {
-    animation-delay: 10s;
+  animation-delay: 10s;
 }
+
 .slide:nth-child(4) {
-    animation-delay: 15s;
+  animation-delay: 15s;
 }
+
 .slide:nth-child(5) {
-    animation-delay: 20s;
+  animation-delay: 20s;
 }
 
 @keyframes fadeSlide {
-    0% { opacity: 0; }
-    4% { opacity: 1; }
-    20% { opacity: 1; }
-    24% { opacity: 0; }
-    100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+
+  4% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  24% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 /* .slide img {
@@ -145,36 +350,36 @@ p {
 
 
 .slide img {
-    height: auto;
-    width: 100%;
-    object-fit: contain;
-    display: block;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 
 
 /* Caption stays on top */
 .slider-caption {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 20px 40px;
-    border-radius: 10px;
-    z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px 40px;
+  border-radius: 10px;
+  z-index: 2;
 }
 
 .hero-btn {
-    margin-top: 20px;
-    padding: 12px 25px;
-    background-color: #0077cc;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #0077cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 

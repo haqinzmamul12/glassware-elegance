@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_from_directory
 import json
 import os   
 import time
@@ -21,6 +21,27 @@ os.makedirs('db', exist_ok=True)
 
 db_path = os.path.join(os.getcwd(), 'db', 'glassware.sqlite3')
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+
+
+@app.route("/robots.txt")
+def robots_txt():
+    return send_from_directory("static", "robots.txt")
+
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    return send_from_directory("static", "sitemap.xml")
+
+@app.route('/products/<slug>')
+def product_detail(slug):
+    product = get_product_by_slug(slug)
+    return render_template(
+        "product_detail.html",
+        product=product,
+        meta_title=product.name + " – Glassware Store",
+        meta_description=product.short_description
+    )
+
+
 
 
 

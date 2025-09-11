@@ -2,9 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Glassware Shop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Glassware Store – Buy Elegant Glass Products Online</title>
+    <meta name="description"
+        content="Buy premium glassware online. Explore our wide range of decorative and domestic glass products including cups, vases, and more. Free shipping available.">
+    <meta name="keywords"
+        content="glassware, buy glass products, decorative glass, glass cups, glass vases, ecommerce glass store">
+    <meta name="author" content="Glassware Store">
+
+    <link rel="canonical" href="https://yourdomain.onrender.com/">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="../static/css/style.css">
 
 </head>
@@ -22,44 +31,57 @@
     {% endwith %} -->
 
 
-    <!-- Navigation Bar -->
+
     <header class="navbar">
         <div class="logo">Glassware Elegance</div>
 
-        <nav class="nav-links">
-            <a href="/">Home</a>
-            <!-- <a href="shop">Shop</a> -->
+        <!-- Hamburger icon for mobile -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        <!-- Nav links (side panel for mobile) -->
+        <nav class="nav-links" id="navLinks">
+            <span class="close-btn" onclick="toggleMenu()">×</span>
+
+            <!-- MOBILE SEARCH (first item in panel) -->
+            <form action="{{ url_for('search') }}" method="GET" class="mobile-search">
+                <input type="text" name="q" placeholder="Search products..." required>
+                <button type="submit">Search</button>
+            </form>
+
+            <a href="/" class="home-link">Home</a>
+
             <a href="about">About</a>
             <a href="contact">Contact Us</a>
             <a href="products">Products</a>
-            <form action="{{ url_for('search') }}" method="GET" style="display: inline-block; margin-left: 20px;">
-                <input type="text" name="q" placeholder="Search products..."
-                    style="padding: 5px; width: 200px; border-radius: 4px; border: 1px solid #ccc;" required>
-                <button type="submit"
-                    style="padding: 5px 10px; background-color: #0077cc; color: white; border: none; border-radius: 4px; cursor: pointer;">Search</button>
-            </form>
-        </nav>
 
-        <div class="nav-right">
+            <!-- Desktop search sits AFTER Products -->
+            <form action="{{ url_for('search') }}" method="GET" class="search-form">
+                <input type="text" name="q" placeholder="Search products..." required>
+                <button type="submit">Search</button>
+            </form>
+
             <a href="/cart" class="cart-link">
                 🛒 Cart ({{ session['cart_count'] if session.get('cart_count') else 0 }})
             </a>
 
-
             {% if current_user.is_authenticated %}
-            <!-- Optionally show username -->
-            <span class="welcome-msg">
-                <a href="{{ url_for('account') }}" class="account-link">{{ current_user.username }}!</a>
-            </span>
-
+            <a href="{{ url_for('account') }}" class="account-link">{{ current_user.username }}!</a>
             <a href="{{ url_for('logout') }}" class="nav-btn">Logout</a>
-
             {% else %}
             <a href="{{ url_for('login') }}" class="nav-btn">Login</a>
             {% endif %}
-
-        </div>
+        </nav>
     </header>
+
+    <!-- Small JS for toggling -->
+    <script>
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("active");
+        }
+    </script>
+
+
+
 
     <!-- Hero Section
     <section class="hero">
