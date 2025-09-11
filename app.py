@@ -14,8 +14,13 @@ from flask_login import current_user, logout_user, login_required
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
+# Ensure db directory exists
+os.makedirs('db', exist_ok=True)
+
+db_path = os.path.join(os.getcwd(), 'db', 'glassware.sqlite3')
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
 
 
 

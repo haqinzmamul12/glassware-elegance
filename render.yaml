@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: glassware-web
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    disk:
+      name: db-data
+      mountPath: /app/db
